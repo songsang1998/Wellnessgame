@@ -4,7 +4,7 @@ printf("Dog:bark");
 }
 
 <<<<<<< HEAD
-bosoru world!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!
 =======
 dksdsdklsddslkldkdlkd
 >>>>>>> 0221680dcbdac85fcdbc8f14096c149c74fa36f2
