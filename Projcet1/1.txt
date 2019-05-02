@@ -2,4 +2,13 @@
 {
 printf("Dog:bark");
 }
+<<<<<<< HEAD
 "hello, world!"
+=======
+
+<<<<<<< HEAD
+bosoru world!!!!!!!!!!!!!!!!!
+=======
+dksdsdklsddslkldkdlkd
+>>>>>>> 0221680dcbdac85fcdbc8f14096c149c74fa36f2
+>>>>>>> 3468ee15c3e4d3c7a3d509f356a1604c0316e5a2
