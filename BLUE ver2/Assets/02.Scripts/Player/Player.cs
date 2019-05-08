@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    Transform foot;
+    public Transform foot;
     Rigidbody2D rbody;
     Animator anim;
     float speedRun = 5;
@@ -15,13 +15,17 @@ public class Player : MonoBehaviour
     int dir = 1;
     LayerMask ground;
     bool Pgun = false;
+    public List<int> list = new List<int>();
 
-    public GameObject bullet;
+     
+
+public GameObject bullet;
     public Transform firePos;
     // Start is called before the first frame update
     void Awake()
     {
         InitPlayer();
+        Listadd();
     }
  
     void FixedUpdate()
@@ -33,6 +37,15 @@ public class Player : MonoBehaviour
         JumpPlayer();
         Gun();
         
+    }
+    
+
+    void Listadd()
+    {
+        for (int i = 1; i < 10; i++)
+        {
+            list.Add(i);
+        }
     }
     void Gun()
     {
@@ -52,6 +65,8 @@ public class Player : MonoBehaviour
         {
             rotation.eulerAngles = new Vector3(0, 180, 0);
         }
+      
+        //Instantiate(Resources.Load("/Bullet") as GameObject) // bullet 
         Instantiate(bullet, firePos.position, rotation);
     }
     void OnTriggerEnter2D(Collider2D other)
@@ -150,7 +165,7 @@ public class Player : MonoBehaviour
         rbody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         ground = 1 << LayerMask.NameToLayer("Ground");
-        foot = transform.Find("foot");
+        
 
     }
 }

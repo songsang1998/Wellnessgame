@@ -5,7 +5,7 @@ using UnityEngine;
 public class gun : MonoBehaviour
     
 {
-
+    Player collidedPlayer;
   
     // Start is called before the first frame update
     void Start()
@@ -13,14 +13,19 @@ public class gun : MonoBehaviour
         
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D collider)
     {
-        if (other.transform.tag == "Player")
-        {
-            Destroy(this.gameObject);
-           
-            
+
+        collidedPlayer = collider.gameObject.GetComponent<Player>();
+        if (collidedPlayer == null) {
+            return;
         }
+
+        Destroy(this.gameObject);
+
+
+
+
     }
    
     
