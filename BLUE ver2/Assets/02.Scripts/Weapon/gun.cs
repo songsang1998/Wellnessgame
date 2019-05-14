@@ -15,8 +15,8 @@ public class gun : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-
         collidedPlayer = collider.gameObject.GetComponent<Player>();
+
         if (collidedPlayer == null) {
             return;
         }

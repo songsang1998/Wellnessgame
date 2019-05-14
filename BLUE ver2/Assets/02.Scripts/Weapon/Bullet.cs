@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        
+        Destroy(this.gameObject,5);
 
       
     }

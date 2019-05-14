@@ -6,9 +6,18 @@ public class Water : MonoBehaviour
 {
     // Start is called before the first frame update
     bool waterlive = false;
-    void Start()
+    GameObject waterleft;
+    public Transform waterPos;
+    private float fDestroyTime;
+    private float fTickTime;
+
+ 
+
+    void Awake()
     {
-       
+        fTickTime = 0;
+        fDestroyTime = 2;
+        waterleft = Resources.Load("droplet_1", typeof(GameObject)) as GameObject;
     }
 
     // Update is called once per frame
@@ -28,7 +37,24 @@ public class Water : MonoBehaviour
                 Destroy(transform.Find("water").gameObject);
                 waterlive = true;
             }
+            else
+            {
+                waterlive = false;
+            }
      
         }
+
+        if (waterlive == true)
+        {
+            fTickTime += Time.deltaTime;
+
+            if (fTickTime >= fDestroyTime)
+            {
+                Instantiate(waterleft, waterPos.position, Quaternion.identity);
+                fTickTime = 0;
+            }
+           
+        }
     }
+
 }

@@ -15,17 +15,18 @@ public class Player : MonoBehaviour
     int dir = 1;
     LayerMask ground;
     bool Pgun = false;
-    public List<int> list = new List<int>();
 
-     
+    GameObject bullet;
 
-public GameObject bullet;
+
+
+
     public Transform firePos;
     // Start is called before the first frame update
     void Awake()
     {
         InitPlayer();
-        Listadd();
+         bullet =Resources.Load("bullet", typeof(GameObject)) as GameObject;
     }
  
     void FixedUpdate()
@@ -40,13 +41,7 @@ public GameObject bullet;
     }
     
 
-    void Listadd()
-    {
-        for (int i = 1; i < 10; i++)
-        {
-            list.Add(i);
-        }
-    }
+  
     void Gun()
     {
         if (Pgun == true)
@@ -65,22 +60,22 @@ public GameObject bullet;
         {
             rotation.eulerAngles = new Vector3(0, 180, 0);
         }
-      
-        //Instantiate(Resources.Load("/Bullet") as GameObject) // bullet 
+
+       
         Instantiate(bullet, firePos.position, rotation);
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("water"))
+        if (other.transform.name=="water")
         {
             Die();
             Debug.Log("you die");
         }
-        if (other.transform.tag == "Gun")
+        if (other.transform.name == "Gun")
         {
             Pgun = true;
             Debug.Log("gun");
-
+            anim.SetBool("gun", true);
         }
 
     }
