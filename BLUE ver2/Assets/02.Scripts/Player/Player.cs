@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
     void Awake()
     {
         InitPlayer();
-         bullet =Resources.Load("bullet", typeof(GameObject)) as GameObject;
+         bullet = Resources.Load("bullet", typeof(GameObject)) as GameObject;
     }
  
     void FixedUpdate()
@@ -61,8 +61,8 @@ public class Player : MonoBehaviour
             rotation.eulerAngles = new Vector3(0, 180, 0);
         }
 
-       
-        Instantiate(bullet, firePos.position, rotation);
+      GameObject ins= Instantiate(bullet, firePos.position, rotation);
+        
     }
     void OnTriggerEnter2D(Collider2D other)
     {

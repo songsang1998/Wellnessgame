@@ -37,16 +37,14 @@ public class Water : MonoBehaviour
                 Destroy(transform.Find("water").gameObject);
                 waterlive = true;
             }
-            else
-            {
-                waterlive = false;
-            }
+          
      
         }
 
         if (waterlive == true)
         {
             fTickTime += Time.deltaTime;
+            Debug.Log("water");
 
             if (fTickTime >= fDestroyTime)
             {
