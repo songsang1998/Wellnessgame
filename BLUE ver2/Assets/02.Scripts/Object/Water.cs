@@ -44,7 +44,7 @@ public class Water : MonoBehaviour
         if (waterlive == true)
         {
             fTickTime += Time.deltaTime;
-            Debug.Log("water");
+            
 
             if (fTickTime >= fDestroyTime)
             {
