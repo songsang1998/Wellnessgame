@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class gun : MonoBehaviour
+public class Gun : MonoBehaviour
     
 {
     Player collidedPlayer;
-  
+   
     // Start is called before the first frame update
     void Start()
     {
-        
+      
     }
 
     void OnTriggerEnter2D(Collider2D collider)
@@ -27,7 +27,8 @@ public class gun : MonoBehaviour
 
 
     }
-   
-    
-    
+
+ 
+
+
 }

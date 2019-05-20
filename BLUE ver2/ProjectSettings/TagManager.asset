@@ -6,6 +6,9 @@ TagManager:
   tags:
   - water
   - Gun
+  - Monster
+  - char
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -16,9 +19,9 @@ TagManager:
   - 
   - 
   - Ground
-  - 
-  - 
-  - 
+  - Char
+  - Bullet
+  - Monster
   - 
   - 
   - 

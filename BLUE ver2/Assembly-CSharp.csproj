@@ -62,15 +62,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\02.Scripts\Camera\CameraPoint.cs" />
+    <Compile Include="Assets\02.Scripts\Camera\CameraControl.cs" />
     <Compile Include="Assets\02.Scripts\G\G.cs" />
+    <Compile Include="Assets\02.Scripts\Moster\Character.cs" />
+    <Compile Include="Assets\02.Scripts\Moster\Die.cs" />
+    <Compile Include="Assets\02.Scripts\Moster\Loming.cs" />
+    <Compile Include="Assets\02.Scripts\Moster\Monster.cs" />
+    <Compile Include="Assets\02.Scripts\Moster\Move.cs" />
+    <Compile Include="Assets\02.Scripts\Moster\Tracking.cs" />
     <Compile Include="Assets\02.Scripts\Object\Water.cs" />
     <Compile Include="Assets\02.Scripts\Object\Waterdie.cs" />
-    <Compile Include="Assets\02.Scripts\Player\Character.cs" />
+    <Compile Include="Assets\02.Scripts\Player\Fire.cs" />
     <Compile Include="Assets\02.Scripts\Player\Player.cs" />
     <Compile Include="Assets\02.Scripts\TitleManager.cs" />
     <Compile Include="Assets\02.Scripts\Weapon\Bullet.cs" />
-    <Compile Include="Assets\02.Scripts\Weapon\gun.cs" />
+    <Compile Include="Assets\02.Scripts\Weapon\Gun.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/songp/Documents/GitHub/Wellnessgame/BLUE ver2/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

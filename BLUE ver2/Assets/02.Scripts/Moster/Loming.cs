@@ -2,24 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : MonoBehaviour
+public class Loming : Monster
 {
+    
     // Start is called before the first frame update
-    public class character
-    {
-        public int Hp;
-        public int speed;
-        public int Damage;
-    }
-
     void Start()
     {
-        
+        Hp = 30;
+        Damage = 20;
+        state = MonsterState.Moves;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         
+        
     }
+
+    
 }

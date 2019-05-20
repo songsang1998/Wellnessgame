@@ -2,14 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : Character
 {
-    
-    
+
+    enum PlayerState {
+       Wait=0,Walk,Run,Damage
+    }
+
     Rigidbody2D rbody;
     Animator anim;
-    float speedRun = 5;
+    SpriteRenderer spriteRenderer;
     Vector2 moveDir;
+    PlayerState state;
     float speedJump = 11;
     float gravity =26;
     bool isGround = true;
@@ -17,23 +21,24 @@ public class Player : MonoBehaviour
     
     bool Pgun = false;
 
-    GameObject bullet;
+    bool isUnBeatTime = false;
+
+    Fire fire;
 
 
 
+  
 
-    public Transform firePos;
-    // Start is called before the first frame update
     void Awake()
     {
         InitPlayer();
-         bullet = Resources.Load("bullet", typeof(GameObject)) as GameObject;
+      
     }
  
     void FixedUpdate()
     {
         InputKey();
-       playergravity();
+       Playergravity();
         Attack();
         SetAnimation();
         JumpPlayer();
@@ -49,22 +54,11 @@ public class Player : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                Fire();
+               fire.Fireing();
             }
         }
     }
 
-    void Fire()
-    {
-        Quaternion rotation = transform.rotation;
-        if (transform.localScale.x > 0)
-        {
-            rotation.eulerAngles = new Vector3(0, 180, 0);
-        }
-
-      GameObject ins= Instantiate(bullet, firePos.position, rotation);
-        
-    }
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.transform.name=="water")
@@ -109,10 +103,11 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void InputKey()
     {
+       
         float key = Input.GetAxis("Horizontal");
-        moveDir.x = speedRun * key;
-
-        anim.SetFloat("key", key);
+        moveDir.x = speed * key;
+       
+        
         FlipPlayer(key);
         
     }
@@ -142,7 +137,7 @@ public class Player : MonoBehaviour
         transform.localScale = scale; 
     }
 
-    void playergravity()
+    void Playergravity()
     {
 
         
@@ -154,8 +149,9 @@ public class Player : MonoBehaviour
         {
             anim.SetTrigger("Jump2");
         }
+        if (state == PlayerState.Damage) return;
         rbody.MovePosition(rbody.position + moveDir * Time.deltaTime);
-
+        
 
     }
 
@@ -179,13 +175,58 @@ public class Player : MonoBehaviour
         
         anim.SetFloat("speed", Mathf.Abs(moveDir.x));
     }
+    void SetDamage(int mDamage)
+    {
+        
+        if (!isUnBeatTime)
+        {
+            Hp -= mDamage;
+            state = PlayerState.Damage;
+            isUnBeatTime = true;
+            StartCoroutine("BeatTime");
+            StartCoroutine("Hit");
+             
+        }
+    }
+    IEnumerator Hit()
+    {
+        anim.SetTrigger("Damage");
+        Vector2 attackedVelocity;
+        attackedVelocity = new Vector2(2f*dir, 1f);
+        rbody.AddForce(attackedVelocity, ForceMode2D.Impulse);
+        
+        yield return new WaitForSeconds(0.5f);
+        state = PlayerState.Wait;
+    }
+    IEnumerator BeatTime()
+    {
+        int count = 0;
+      
+        while (count < 10)
+        {
+            
+            if (count % 2 == 0)
+                spriteRenderer.color = new Color32(255, 255, 255, 90);
+            else
+                spriteRenderer.color = new Color32(255, 255, 255, 180);
+            
+            yield return new WaitForSeconds(0.3f);
 
+            count++;
+        }
+        spriteRenderer.color = new Color(255, 255, 255, 255);
+        
+        isUnBeatTime = false;
+
+        yield return null;
+    }
     void InitPlayer()
     {
         rbody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-       
-
-
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        fire = GetComponent<Fire>();
+        speed = 5;
+        Hp = 100;
     }
 }

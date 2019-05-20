@@ -17,4 +17,12 @@ public class Bullet : MonoBehaviour
     {
         transform.Translate(Vector3.right * speed * Time.deltaTime);
     }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.transform.tag != "Player")
+        {
+            Destroy(gameObject);
+        }
+    }
 }

@@ -43,13 +43,14 @@ public class Water : MonoBehaviour
 
         if (waterlive == true)
         {
-            fTickTime += Time.deltaTime;
+         
             
 
-            if (fTickTime >= fDestroyTime)
+            if (Time.time>fTickTime)
             {
+                fTickTime = Time.time + fDestroyTime;
                 Instantiate(waterleft, waterPos.position, Quaternion.identity);
-                fTickTime = 0;
+                
             }
            
         }
