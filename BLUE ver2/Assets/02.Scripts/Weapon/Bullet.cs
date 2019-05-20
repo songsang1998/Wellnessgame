@@ -5,11 +5,11 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     
-    float speed =15;
+    float speed =10;
     // Start is called before the first frame update
     void Awake()
     {
-        Destroy(this.gameObject,5);
+        Destroy(this.gameObject,1f);
 
       
     }

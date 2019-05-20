@@ -10,6 +10,7 @@ public class Loming : Monster
     {
         Hp = 30;
         Damage = 20;
+        speed = 3;
         state = MonsterState.Moves;
     }
 

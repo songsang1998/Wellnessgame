@@ -64,10 +64,14 @@
   <ItemGroup>
     <Compile Include="Assets\02.Scripts\Camera\CameraControl.cs" />
     <Compile Include="Assets\02.Scripts\G\G.cs" />
+    <Compile Include="Assets\02.Scripts\Moster\Atack.cs" />
+    <Compile Include="Assets\02.Scripts\Moster\Boom.cs" />
     <Compile Include="Assets\02.Scripts\Moster\Character.cs" />
     <Compile Include="Assets\02.Scripts\Moster\Die.cs" />
+    <Compile Include="Assets\02.Scripts\Moster\Dog.cs" />
     <Compile Include="Assets\02.Scripts\Moster\Loming.cs" />
     <Compile Include="Assets\02.Scripts\Moster\Monster.cs" />
+    <Compile Include="Assets\02.Scripts\Moster\MonsterAtack.cs" />
     <Compile Include="Assets\02.Scripts\Moster\Move.cs" />
     <Compile Include="Assets\02.Scripts\Moster\Tracking.cs" />
     <Compile Include="Assets\02.Scripts\Object\Water.cs" />

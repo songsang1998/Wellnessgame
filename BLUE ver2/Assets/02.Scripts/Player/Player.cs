@@ -6,7 +6,7 @@ public class Player : Character
 {
 
     enum PlayerState {
-       Wait=0,Walk,Run,Damage
+       Wait=0,Walk,Run,Damage,die
     }
 
     Rigidbody2D rbody;
@@ -43,10 +43,17 @@ public class Player : Character
         SetAnimation();
         JumpPlayer();
         Gun();
-       
+        DeadCheck();
+    }
+    void DeadCheck()
+    {
+        if (Hp <= 0 && state != PlayerState.die)
+        {
+            Die();
+            
+        }
     }
     
-
   
     void Gun()
     {
@@ -72,7 +79,7 @@ public class Player : Character
             Debug.Log("gun");
             anim.SetBool("gun", true);
         }
-        if (other.gameObject.layer == 8)
+        if (other.gameObject.layer >=8 && other.gameObject.layer<=10)
         {
             
             isGround = true;
@@ -86,7 +93,7 @@ public class Player : Character
     {
 
 
-        if (other.gameObject.layer == 8)
+        if (other.gameObject.layer >= 8 && other.gameObject.layer <= 10)
         {
             isGround = false;
             anim.SetTrigger("Fall");
@@ -98,6 +105,7 @@ public class Player : Character
     void Die()
     {
         Destroy(this.gameObject);
+        state = PlayerState.die;
     }
    
     // Update is called once per frame
@@ -149,9 +157,9 @@ public class Player : Character
         {
             anim.SetTrigger("Jump2");
         }
-        if (state == PlayerState.Damage) return;
+        if (state == PlayerState.Damage || state==PlayerState.die) return;
         rbody.MovePosition(rbody.position + moveDir * Time.deltaTime);
-        
+       
 
     }
 
@@ -192,11 +200,11 @@ public class Player : Character
     {
         anim.SetTrigger("Damage");
         Vector2 attackedVelocity;
-        attackedVelocity = new Vector2(2f*dir, 1f);
+        attackedVelocity = new Vector2(2f*dir, 0.5f);
         rbody.AddForce(attackedVelocity, ForceMode2D.Impulse);
-        
-        yield return new WaitForSeconds(0.5f);
         state = PlayerState.Wait;
+        yield return new WaitForSeconds(0.5f);
+        
     }
     IEnumerator BeatTime()
     {

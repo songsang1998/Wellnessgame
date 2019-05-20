@@ -5,20 +5,26 @@ using UnityEngine;
 public class Move : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float movePower = 1f;
+   
     Vector3 movement;
 
     int movementFlag = 0;
-
+    Monster mob;
     void Start()
     {
-        StartCoroutine("ChangeMovement");
+        mob = GetComponent<Monster>();
+        
+            StartCoroutine("ChangeMovement");
+        
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        Moving();
+        if (mob.state != Monster.MonsterState.Tracks && mob.state != Monster.MonsterState.Die)
+        {
+            Moving();
+        }
     }
 
     void Moving()
@@ -35,12 +41,13 @@ public class Move : MonoBehaviour
             transform.localScale = new Vector3(-1, 1, 1);
         }
 
-        transform.position += moveVelocity * movePower * Time.deltaTime;
+        transform.position += moveVelocity * mob.speed * Time.deltaTime;
+        
     }
 
     IEnumerator ChangeMovement()
     {
-        movementFlag = Random.Range(0, 3);
+        movementFlag = Random.Range(1, 3);
 
         yield return new WaitForSeconds(2f);
 

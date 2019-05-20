@@ -6,10 +6,10 @@ public class Monster : Character
 {
     public enum MonsterState
     {
-        Wait = 0, Moves, Tracks
+        Wait = 0, Moves, Tracks, Die
     }
 
-    static Transform target;
+   public static Transform target;
     public MonsterState state;
     
 
@@ -37,7 +37,7 @@ public class Monster : Character
         
     }
 
-     void OnCollisionStay2D (Collision2D collision)
+     public void OnCollisionStay2D (Collision2D collision)
     {
         if (collision.transform.tag == "Player")
         {

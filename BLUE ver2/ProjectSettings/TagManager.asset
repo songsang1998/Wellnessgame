@@ -9,6 +9,7 @@ TagManager:
   - Monster
   - char
   - Bullet
+  - MonsterAtack
   layers:
   - Default
   - TransparentFX
@@ -20,9 +21,9 @@ TagManager:
   - 
   - Ground
   - Char
-  - Bullet
   - Monster
-  - 
+  - Bullet
+  - MonsterAtack
   - 
   - 
   - 
