@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public Transform foot;
+    
+    
     Rigidbody2D rbody;
     Animator anim;
     float speedRun = 5;
@@ -13,7 +14,7 @@ public class Player : MonoBehaviour
     float gravity =26;
     bool isGround = true;
     int dir = 1;
-    LayerMask ground;
+    
     bool Pgun = false;
 
     GameObject bullet;
@@ -32,12 +33,12 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         InputKey();
-        MovePlayer();
+       playergravity();
         Attack();
         SetAnimation();
         JumpPlayer();
         Gun();
-        
+       
     }
     
 
@@ -77,10 +78,29 @@ public class Player : MonoBehaviour
             Debug.Log("gun");
             anim.SetBool("gun", true);
         }
+        if (other.gameObject.layer == 8)
+        {
+            
+            isGround = true;
+            moveDir.y = 0;
+            anim.SetBool("Jumping", false);
+        }
+       
 
     }
+    void OnTriggerExit2D(Collider2D other)
+    {
 
- 
+
+        if (other.gameObject.layer == 8)
+        {
+            isGround = false;
+            anim.SetTrigger("Fall");
+        }
+    }
+
+
+
     void Die()
     {
         Destroy(this.gameObject);
@@ -91,22 +111,25 @@ public class Player : MonoBehaviour
     {
         float key = Input.GetAxis("Horizontal");
         moveDir.x = speedRun * key;
-        Debug.Log(moveDir.x);
+
         anim.SetFloat("key", key);
         FlipPlayer(key);
-
+        
     }
    
     void JumpPlayer()
     {
-        CheckGround();
+        
         if (isGround && Input.GetButton("Jump"))
         {
+            
             moveDir.y = speedJump;
-            isGround = false;
-           
-          
+            anim.SetBool("Jumping", true);
+            anim.SetTrigger("Jump");
+
         }
+        
+      
     }
     void FlipPlayer(float key)
     {
@@ -118,24 +141,26 @@ public class Player : MonoBehaviour
         scale.x = Mathf.Abs(scale.x) * dir;
         transform.localScale = scale; 
     }
-    void CheckGround()
+
+    void playergravity()
     {
-        if (Physics2D.OverlapCircle(foot.position, 0.1f, ground))
+
+        
+        if (isGround == false)
         {
-           
-            isGround = true;
-            moveDir.y = -1;
-           
+            moveDir.y -= gravity * Time.deltaTime;
         }
-    }
-    void MovePlayer()
-    {
-        moveDir.y -= gravity * Time.deltaTime;
+        if (moveDir.y < 0)
+        {
+            anim.SetTrigger("Jump2");
+        }
         rbody.MovePosition(rbody.position + moveDir * Time.deltaTime);
-      
+
 
     }
+
   
+
 
     void Attack()
     {
@@ -159,8 +184,8 @@ public class Player : MonoBehaviour
     {
         rbody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        ground = 1 << LayerMask.NameToLayer("Ground");
-        
+       
+
 
     }
 }
