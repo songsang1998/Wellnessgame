@@ -157,7 +157,7 @@ public class Player : Character
         {
             anim.SetTrigger("Jump2");
         }
-        if (state == PlayerState.Damage || state==PlayerState.die) return;
+        if (state == PlayerState.Damage) return;
         rbody.MovePosition(rbody.position + moveDir * Time.deltaTime);
        
 
@@ -198,12 +198,14 @@ public class Player : Character
     }
     IEnumerator Hit()
     {
+
         anim.SetTrigger("Damage");
-        Vector2 attackedVelocity;
-        attackedVelocity = new Vector2(2f*dir, 0.5f);
+      Vector2 attackedVelocity;
+        attackedVelocity = new Vector2(2f*dir, 1f);
         rbody.AddForce(attackedVelocity, ForceMode2D.Impulse);
-        state = PlayerState.Wait;
         yield return new WaitForSeconds(0.5f);
+        state = PlayerState.Wait;
+      
         
     }
     IEnumerator BeatTime()
