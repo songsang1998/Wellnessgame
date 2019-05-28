@@ -19,7 +19,7 @@ public class Player : Character
     bool isGround = true;
     int dir = 1;
     
-    bool Pgun = false;
+    public bool Pgun = false;
 
     bool isUnBeatTime = false;
 

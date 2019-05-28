@@ -16,6 +16,7 @@ public class Monster : Character
     // Start is called before the first frame update
     void Awake()
     {
+
         target =  GameObject.FindWithTag("Player").GetComponent<Transform>();
 
     }
