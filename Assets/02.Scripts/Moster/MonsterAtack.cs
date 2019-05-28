@@ -23,7 +23,7 @@ public class MonsterAtack : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.transform.tag != "Monster")
+        if (other.transform.tag != "Monster" && other.transform.tag != "Bullet" && other.transform.tag != "MonsterAtack")
         {
             Destroy(gameObject);
         }
