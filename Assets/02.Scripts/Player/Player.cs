@@ -34,7 +34,10 @@ public class Player : Character
         InitPlayer();
       
     }
- 
+    void Update()
+    {
+        Gun();
+    }
     void FixedUpdate()
     {
         InputKey();
@@ -42,7 +45,7 @@ public class Player : Character
         Attack();
         SetAnimation();
         JumpPlayer();
-        Gun();
+        
         DeadCheck();
     }
     void DeadCheck()
@@ -152,6 +155,7 @@ public class Player : Character
         if (isGround == false)
         {
             moveDir.y -= gravity * Time.deltaTime;
+            
         }
         if (moveDir.y < 0)
         {
