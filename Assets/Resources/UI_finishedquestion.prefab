@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2005035829794284133}
   - component: {fileID: 7257970526103668398}
   - component: {fileID: 3995741721814165485}
-  - component: {fileID: 6416283783807556322}
+  - component: {fileID: 1202133427185745901}
   m_Layer: 5
   m_Name: no
   m_TagString: Untagged
@@ -133,7 +133,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!111 &6416283783807556322
+--- !u!111 &1202133427185745901
 Animation:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -142,9 +142,9 @@ Animation:
   m_GameObject: {fileID: 1396083484023276876}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 1ba4e2e54591a6c4f8d3f77a55305422, type: 2}
+  m_Animation: {fileID: 7400000, guid: 30d7dc419efcffd41915fce5e122e5b1, type: 2}
   m_Animations:
-  - {fileID: 7400000, guid: 1ba4e2e54591a6c4f8d3f77a55305422, type: 2}
+  - {fileID: 7400000, guid: 30d7dc419efcffd41915fce5e122e5b1, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
@@ -324,7 +324,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4061824092092718330
 RectTransform:
   m_ObjectHideFlags: 0
@@ -511,7 +511,7 @@ GameObject:
   - component: {fileID: 1543027115307513794}
   - component: {fileID: 503215853602134417}
   - component: {fileID: 5586939132299639006}
-  - component: {fileID: 7066347134372640965}
+  - component: {fileID: 6903444165080799827}
   m_Layer: 5
   m_Name: yes
   m_TagString: Untagged
@@ -632,7 +632,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!111 &7066347134372640965
+--- !u!111 &6903444165080799827
 Animation:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -641,9 +641,9 @@ Animation:
   m_GameObject: {fileID: 7770306214951527033}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 8c53ce347744856419f6161001778a6a, type: 2}
+  m_Animation: {fileID: 7400000, guid: 30d7dc419efcffd41915fce5e122e5b1, type: 2}
   m_Animations:
-  - {fileID: 7400000, guid: 8c53ce347744856419f6161001778a6a, type: 2}
+  - {fileID: 7400000, guid: 30d7dc419efcffd41915fce5e122e5b1, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
