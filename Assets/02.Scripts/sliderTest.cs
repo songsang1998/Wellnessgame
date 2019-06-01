@@ -14,7 +14,7 @@ public class sliderTest : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        progress.value = Mathf.MoveTowards(progress.value, 1.0of, 0.01f);
+        progress.value = Mathf.MoveTowards(progress.value, 1.0f, 0.01f);
 
     }
 }

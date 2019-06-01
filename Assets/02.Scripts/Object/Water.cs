@@ -29,20 +29,9 @@ public class Water : MonoBehaviour
 
     void waterrotate()
     {
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            transform.localScale = Vector3.Scale(transform.localScale, new Vector3(1, -1, 1));
-            if (waterlive == false)
-            {
-                Destroy(transform.Find("water").gameObject);
-                waterlive = true;
-            }
-          
-     
-        }
+       
 
-        if (waterlive == true)
-        {
+      
          
             
 
@@ -53,7 +42,7 @@ public class Water : MonoBehaviour
                 
             }
            
-        }
+        
     }
 
 }
