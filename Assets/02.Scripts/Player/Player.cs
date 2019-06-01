@@ -71,12 +71,12 @@ public class Player : Character
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.transform.name=="water")
+        if (other.transform.tag=="water")
         {
             Die();
             Debug.Log("you die");
         }
-        if (other.transform.name == "Gun")
+        if (other.transform.tag == "Gun")
         {
             Pgun = true;
             Debug.Log("gun");

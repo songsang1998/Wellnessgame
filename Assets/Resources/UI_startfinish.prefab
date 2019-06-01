@@ -181,7 +181,6 @@ GameObject:
   - component: {fileID: 1374500160590427837}
   - component: {fileID: 4332196605454781719}
   - component: {fileID: 2302576358645971426}
-  - component: {fileID: 7060431979393001959}
   m_Layer: 5
   m_Name: starting
   m_TagString: Untagged
@@ -302,22 +301,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!111 &7060431979393001959
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2241208549654213360}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 1ba4e2e54591a6c4f8d3f77a55305422, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 1ba4e2e54591a6c4f8d3f77a55305422, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1 &6926468650496280414
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,7 +313,6 @@ GameObject:
   - component: {fileID: 7952648374947728941}
   - component: {fileID: 1087790851951898085}
   - component: {fileID: 4433697598490816578}
-  - component: {fileID: 6070684123787334764}
   m_Layer: 5
   m_Name: finishing
   m_TagString: Untagged
@@ -451,22 +433,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!111 &6070684123787334764
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6926468650496280414}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 1ba4e2e54591a6c4f8d3f77a55305422, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 1ba4e2e54591a6c4f8d3f77a55305422, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1 &7290545837399048558
 GameObject:
   m_ObjectHideFlags: 0
