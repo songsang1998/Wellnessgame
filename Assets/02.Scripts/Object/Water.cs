@@ -5,7 +5,7 @@ using UnityEngine;
 public class Water : MonoBehaviour
 {
     // Start is called before the first frame update
-    bool waterlive = false;
+   
     GameObject waterleft;
     public Transform waterPos;
     private float fDestroyTime;

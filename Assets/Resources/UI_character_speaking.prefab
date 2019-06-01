@@ -237,9 +237,9 @@ Animation:
   m_GameObject: {fileID: 2252330233059149889}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 1ba4e2e54591a6c4f8d3f77a55305422, type: 2}
+  m_Animation: {fileID: 0}
   m_Animations:
-  - {fileID: 7400000, guid: 1ba4e2e54591a6c4f8d3f77a55305422, type: 2}
+  - {fileID: 0}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
@@ -292,7 +292,7 @@ GameObject:
   - component: {fileID: 7832223892423350964}
   - component: {fileID: 4431383699148327226}
   - component: {fileID: 1319662205853283340}
-  - component: {fileID: 946373855673565702}
+  - component: {fileID: 1721549720}
   m_Layer: 5
   m_Name: more
   m_TagString: Untagged
@@ -411,24 +411,38 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1721549720}
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Start
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!111 &946373855673565702
-Animation:
+--- !u!95 &1721549720
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3843842982729384393}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 1ba4e2e54591a6c4f8d3f77a55305422, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 1ba4e2e54591a6c4f8d3f77a55305422, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cb926353c08625d4e831855c0550e8a7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4208112505620906857
 GameObject:
   m_ObjectHideFlags: 0
@@ -678,8 +692,9 @@ Animation:
   m_GameObject: {fileID: 6025771147022098296}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: d71da5c9dbea1cc468ea4d1a1255f76b, type: 2}
-  m_Animations: []
+  m_Animation: {fileID: 7400000, guid: b04475b187259fb4ba8139e9e1e53156, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: b04475b187259fb4ba8139e9e1e53156, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0

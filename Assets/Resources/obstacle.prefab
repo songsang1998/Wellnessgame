@@ -1,5 +1,17 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1647532255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7533410053203840439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4770c5a2b4f137047859ed7798b9d68e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8034869146716228258
 GameObject:
   m_ObjectHideFlags: 0
@@ -190,8 +202,19 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6439408808917561710, guid: ebe67d3eed29f1048b05e9713b10376d,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ebe67d3eed29f1048b05e9713b10376d, type: 3}
+--- !u!1 &7533410053203840439 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6439408808917561711, guid: ebe67d3eed29f1048b05e9713b10376d,
+    type: 3}
+  m_PrefabInstance: {fileID: 3589769907528482008}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7533410053203840395 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6439408808917561683, guid: ebe67d3eed29f1048b05e9713b10376d,
@@ -213,12 +236,12 @@ PrefabInstance:
     - target: {fileID: 2457775043565011881, guid: 34f020d61f9c45845a6602adea9e6a54,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.66
+      value: 19.39
       objectReference: {fileID: 0}
     - target: {fileID: 2457775043565011881, guid: 34f020d61f9c45845a6602adea9e6a54,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.71
+      value: 2.91
       objectReference: {fileID: 0}
     - target: {fileID: 2457775043565011881, guid: 34f020d61f9c45845a6602adea9e6a54,
         type: 3}
@@ -293,7 +316,7 @@ PrefabInstance:
     - target: {fileID: 2457775043565011881, guid: 34f020d61f9c45845a6602adea9e6a54,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.71
+      value: 2.91
       objectReference: {fileID: 0}
     - target: {fileID: 2457775043565011881, guid: 34f020d61f9c45845a6602adea9e6a54,
         type: 3}

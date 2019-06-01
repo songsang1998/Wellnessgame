@@ -6,7 +6,7 @@ public class Player : Character
 {
 
     enum PlayerState {
-       Wait=0,Walk,Run,Damage,die
+       Wait=0,Walk,Run,Damage,die,Attack
     }
 
     Rigidbody2D rbody;
@@ -36,24 +36,31 @@ public class Player : Character
     }
     void Update()
     {
-        Gun();
+        if (state != PlayerState.die)
+        {
+            Gun();
+        }
     }
     void FixedUpdate()
     {
-        InputKey();
-       Playergravity();
-        Attack();
-        SetAnimation();
-        JumpPlayer();
-        
-        DeadCheck();
+        Playergravity();
+        if (state != PlayerState.die)
+        {
+            InputKey();
+           
+            Attack();
+            SetAnimation();
+            JumpPlayer();
+
+            DeadCheck();
+        }
     }
     void DeadCheck()
     {
         if (Hp <= 0 && state != PlayerState.die)
         {
             Die();
-            
+            isGround = false;
         }
     }
     
@@ -94,12 +101,15 @@ public class Player : Character
     }
     void OnTriggerExit2D(Collider2D other)
     {
-
-
-        if (other.gameObject.layer >= 8 && other.gameObject.layer <= 10)
+        if (state != PlayerState.die)
         {
-            isGround = false;
-            anim.SetTrigger("Fall");
+
+            if (other.gameObject.layer >= 8 && other.gameObject.layer <= 10)
+            {
+                isGround = false;
+                anim.SetTrigger("Fall");
+              
+            }
         }
     }
 
@@ -107,7 +117,7 @@ public class Player : Character
 
     void Die()
     {
-        Destroy(this.gameObject);
+        anim.SetBool("Die", true);
         state = PlayerState.die;
     }
    
@@ -157,6 +167,7 @@ public class Player : Character
             moveDir.y -= gravity * Time.deltaTime;
             
         }
+
         if (moveDir.y < 0)
         {
             anim.SetTrigger("Jump2");
@@ -174,12 +185,8 @@ public class Player : Character
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            anim.SetBool("Attacking", true);
+            anim.SetTrigger("Attacking");
             
-        }
-        else
-        {
-            anim.SetBool("Attacking", false);
         }
     }
     void SetAnimation()
@@ -189,21 +196,23 @@ public class Player : Character
     }
     void SetDamage(int mDamage)
     {
-        
-        if (!isUnBeatTime)
+        if (state != PlayerState.die)
         {
-            Hp -= mDamage;
-            state = PlayerState.Damage;
-            isUnBeatTime = true;
-            StartCoroutine("BeatTime");
-            StartCoroutine("Hit");
-             
+            if (!isUnBeatTime)
+            {
+                Hp -= mDamage;
+                state = PlayerState.Damage;
+                isUnBeatTime = true;
+                StartCoroutine("BeatTime");
+                StartCoroutine("Hit");
+
+            }
         }
     }
     IEnumerator Hit()
     {
-
-        anim.SetTrigger("Damage");
+        
+            anim.SetTrigger("Damage");
       Vector2 attackedVelocity;
         attackedVelocity = new Vector2(2f*dir, 1f);
         rbody.AddForce(attackedVelocity, ForceMode2D.Impulse);
