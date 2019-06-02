@@ -6,16 +6,18 @@ public class Player : Character
 {
 
     enum PlayerState {
-       Wait=0,Walk,Run,Damage,die
+       Wait=0,Run,Damage,die,Attack,Jump,Sit
     }
 
     Rigidbody2D rbody;
     Animator anim;
     SpriteRenderer spriteRenderer;
     Vector2 moveDir;
-    PlayerState state;
-    float speedJump = 11;
-    float gravity =26;
+
+
+    PlayerState state=PlayerState.Run;
+    float speedJump = 9;
+    float gravity =20;
     bool isGround = true;
     int dir = 1;
     
@@ -36,24 +38,56 @@ public class Player : Character
     }
     void Update()
     {
-        Gun();
+        if (state != PlayerState.die)
+        {
+            Gun();
+            Debug.Log(state);
+        }
     }
     void FixedUpdate()
     {
-        InputKey();
-       Playergravity();
-        Attack();
-        SetAnimation();
-        JumpPlayer();
-        
-        DeadCheck();
+        Playergravity();
+        if (state != PlayerState.die)
+        {
+            InputKey();
+          
+            Attack();
+            SetAnimation();
+            JumpPlayer();
+
+            DeadCheck();
+            Down();
+        }
+    }    
+
+    private void Down()
+    {
+        if (state == PlayerState.Run)
+        {
+            if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                anim.SetTrigger("sit");
+                state = PlayerState.Sit;
+                moveDir.x = 0;
+            }
+        }
+        if (state == PlayerState.Sit)
+        {
+            if (Input.GetKeyUp(KeyCode.DownArrow))
+            {
+                anim.SetTrigger("up");
+                state = PlayerState.Run;
+            }
+
+        }
+
     }
     void DeadCheck()
     {
-        if (Hp <= 0 && state != PlayerState.die)
+        if (Hp <= 0 && state !=  PlayerState.die)
         {
             Die();
-            
+            isGround = false;
         }
     }
     
@@ -71,35 +105,35 @@ public class Player : Character
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.transform.tag=="water")
-        {
-            Die();
-            Debug.Log("you die");
-        }
+      
         if (other.transform.tag == "Gun")
         {
             Pgun = true;
             Debug.Log("gun");
             anim.SetBool("gun", true);
         }
-        if (other.gameObject.layer >=8 && other.gameObject.layer<=10)
+        if (other.gameObject.layer >=8 && other.gameObject.layer<=10&& state==PlayerState.Jump)
         {
             
             isGround = true;
             moveDir.y = 0;
-            anim.SetBool("Jumping", false);
+    anim.SetBool("Jumping", false);
+            state = PlayerState.Run;
         }
        
 
     }
     void OnTriggerExit2D(Collider2D other)
     {
-
-
-        if (other.gameObject.layer >= 8 && other.gameObject.layer <= 10)
+        if (state != PlayerState.die)
         {
-            isGround = false;
-            anim.SetTrigger("Fall");
+
+            if (other.gameObject.layer >= 8 && other.gameObject.layer <= 10)
+            {
+                isGround = false;
+                anim.SetTrigger("Fall");
+              
+            }
         }
     }
 
@@ -107,19 +141,20 @@ public class Player : Character
 
     void Die()
     {
-        Destroy(this.gameObject);
+        anim.SetBool("Die", true);
         state = PlayerState.die;
+        moveDir.x = 0;
     }
    
     // Update is called once per frame
     void InputKey()
     {
-       
-        float key = Input.GetAxis("Horizontal");
-        moveDir.x = speed * key;
-       
-        
-        FlipPlayer(key);
+        if (state != PlayerState.Sit)
+        {
+            float key = Input.GetAxis("Horizontal");
+            moveDir.x = speed * key;
+            FlipPlayer(key);
+        }
         
     }
    
@@ -128,7 +163,7 @@ public class Player : Character
         
         if (isGround && Input.GetButton("Jump"))
         {
-            
+            state = PlayerState.Jump;
             moveDir.y = speedJump;
             anim.SetBool("Jumping", true);
             anim.SetTrigger("Jump");
@@ -157,6 +192,7 @@ public class Player : Character
             moveDir.y -= gravity * Time.deltaTime;
             
         }
+
         if (moveDir.y < 0)
         {
             anim.SetTrigger("Jump2");
@@ -174,12 +210,8 @@ public class Player : Character
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            anim.SetBool("Attacking", true);
+            anim.SetTrigger("Attacking");
             
-        }
-        else
-        {
-            anim.SetBool("Attacking", false);
         }
     }
     void SetAnimation()
@@ -189,26 +221,28 @@ public class Player : Character
     }
     void SetDamage(int mDamage)
     {
-        
-        if (!isUnBeatTime)
+        if (state != PlayerState.die)
         {
-            Hp -= mDamage;
-            state = PlayerState.Damage;
-            isUnBeatTime = true;
-            StartCoroutine("BeatTime");
-            StartCoroutine("Hit");
-             
+            if (!isUnBeatTime)
+            {
+                Hp -= mDamage;
+                state = PlayerState.Damage;
+                isUnBeatTime = true;
+                StartCoroutine("BeatTime");
+                StartCoroutine("Hit");
+
+            }
         }
     }
     IEnumerator Hit()
     {
-
-        anim.SetTrigger("Damage");
+        
+            anim.SetTrigger("Damage");
       Vector2 attackedVelocity;
         attackedVelocity = new Vector2(2f*dir, 1f);
         rbody.AddForce(attackedVelocity, ForceMode2D.Impulse);
         yield return new WaitForSeconds(0.5f);
-        state = PlayerState.Wait;
+        
       
         
     }
@@ -229,7 +263,7 @@ public class Player : Character
             count++;
         }
         spriteRenderer.color = new Color(255, 255, 255, 255);
-        
+        state = PlayerState.Run;
         isUnBeatTime = false;
 
         yield return null;
@@ -240,7 +274,7 @@ public class Player : Character
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         fire = GetComponent<Fire>();
-        speed = 5;
+        speed = 3.5f;
         Hp = 100;
     }
 }

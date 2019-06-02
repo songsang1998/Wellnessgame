@@ -7,7 +7,7 @@ public class Character : MonoBehaviour
     // Start is called before the first frame update
     
         public int Hp;
-        public int speed;
+        public float speed;
         public int Damage;
     
 
