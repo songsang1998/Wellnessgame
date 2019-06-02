@@ -20,7 +20,7 @@ public class Player : Character
     float gravity =20;
     bool isGround = true;
     int dir = 1;
-    
+    float keys;
     public bool Pgun = false;
 
     bool isUnBeatTime = false;
@@ -41,7 +41,7 @@ public class Player : Character
         if (state != PlayerState.die)
         {
             Gun();
-            Debug.Log(state);
+          
         }
     }
     void FixedUpdate()
@@ -57,6 +57,7 @@ public class Player : Character
 
             DeadCheck();
             Down();
+           
         }
     }    
 
@@ -147,15 +148,15 @@ public class Player : Character
         state = PlayerState.die;
         moveDir.x = 0;
     }
-   
+
     // Update is called once per frame
     void InputKey()
     {
-        if (state != PlayerState.Sit)
+        if (state != PlayerState.Sit && state !=PlayerState.Attack)
         {
-            float key = Input.GetAxis("Horizontal");
-            moveDir.x = speed * key;
-            FlipPlayer(key);
+             keys = Input.GetAxis("Horizontal");
+            moveDir.x = speed * keys;
+            FlipPlayer(keys);
         }
         
     }
@@ -210,13 +211,21 @@ public class Player : Character
 
     void Attack()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.Z) && state == PlayerState.Run)
         {
+            state = PlayerState.Attack;
             anim.SetTrigger("Attacking");
-            
+            StartCoroutine("Attacks");
+            moveDir.x = 0;
         }
     }
-    void SetAnimation()
+    IEnumerator Attacks()
+    {
+        yield return new WaitForSeconds(1f);
+        state = PlayerState.Run;
+        anim.SetTrigger("Not Attacking");
+    }
+        void SetAnimation()
     {
         
         anim.SetFloat("speed", Mathf.Abs(moveDir.x));
@@ -241,12 +250,14 @@ public class Player : Character
         
             anim.SetTrigger("Damage");
       Vector2 attackedVelocity;
-        attackedVelocity = new Vector2(2f*dir, 1f);
+        attackedVelocity = new Vector2(dir, 0.5f);
         rbody.AddForce(attackedVelocity, ForceMode2D.Impulse);
-        yield return new WaitForSeconds(0.5f);
         
-      
         
+        yield return new WaitForSeconds(0.3f);
+        state = PlayerState.Run;
+
+
     }
     IEnumerator BeatTime()
     {
@@ -265,7 +276,7 @@ public class Player : Character
             count++;
         }
         spriteRenderer.color = new Color(255, 255, 255, 255);
-        state = PlayerState.Run;
+        
         isUnBeatTime = false;
 
         yield return null;

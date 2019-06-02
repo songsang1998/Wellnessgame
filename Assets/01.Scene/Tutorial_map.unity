@@ -760,6 +760,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_character_speaking
       objectReference: {fileID: 0}
+    - target: {fileID: 3701692828503781146, guid: 7e5ff3f5112e1d44f994e5f11b2946ad,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3190935823301999844, guid: 7e5ff3f5112e1d44f994e5f11b2946ad,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -889,6 +894,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_object_research
       objectReference: {fileID: 0}
+    - target: {fileID: 7350728570133657043, guid: f928960370150334883e451a4baee935,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 467645521605861718, guid: f928960370150334883e451a4baee935,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1009,6 +1019,11 @@ PrefabInstance:
       propertyPath: m_Animations.Array.data[0]
       value: 
       objectReference: {fileID: 7400000, guid: 1ba4e2e54591a6c4f8d3f77a55305422, type: 2}
+    - target: {fileID: 3933650025742074728, guid: f928960370150334883e451a4baee935,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f928960370150334883e451a4baee935, type: 3}
 --- !u!224 &2091564649829889151 stripped
