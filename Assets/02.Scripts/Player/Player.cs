@@ -112,13 +112,15 @@ public class Player : Character
             Debug.Log("gun");
             anim.SetBool("gun", true);
         }
-        if (other.gameObject.layer >=8 && other.gameObject.layer<=10&& state==PlayerState.Jump)
+        if (other.gameObject.layer >= 8 && other.gameObject.layer <= 10)
         {
-            
+
             isGround = true;
             moveDir.y = 0;
-    anim.SetBool("Jumping", false);
-            state = PlayerState.Run;
+            anim.SetBool("Jumping", false);
+            if (state == PlayerState.Jump) { 
+                state = PlayerState.Run;
+        }
         }
        
 
