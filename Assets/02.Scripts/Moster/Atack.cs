@@ -29,7 +29,7 @@ public class Atack : MonoBehaviour
         playerPos = Monster.target.transform.position;
         dir = playerPos - transform.position;
 
-        if (dir.x >= -7 && dir.x <= 7 && mob.state != Monster.MonsterState.Die)
+        if (dir.x >= -7 && dir.x <= 7 && mob.state != Monster.MonsterState.Die && mob.state != Monster.MonsterState.Damage)
         {
             mob.state = Monster.MonsterState.Tracks;
             anim.SetBool("Atacking", true);

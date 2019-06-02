@@ -22,7 +22,7 @@ public class Tracking : MonoBehaviour
         if (Monster.target == null) return;
          playerPos = Monster.target.transform.position;
          dir = playerPos - transform.position;
-        if (mob.state != Monster.MonsterState.Die) {
+        if (mob.state != Monster.MonsterState.Die && mob.state != Monster.MonsterState.Damage) {
             if (dir.x >= -5 && dir.x <= 5 )
             {
                 mob.state = Monster.MonsterState.Tracks;
