@@ -11,7 +11,7 @@ public class Boom : Monster
     {
         Hp = 10;
         Damage = 70;
-        speed =4;
+        speed =3;
         state = MonsterState.Wait;
 
     }
