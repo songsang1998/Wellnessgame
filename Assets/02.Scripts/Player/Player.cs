@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : Character
 {
 
-    enum PlayerState {
+   public enum PlayerState {
        Wait=0,Run,Damage,die,Attack,Jump,Sit
     }
 
@@ -13,9 +13,9 @@ public class Player : Character
     Animator anim;
     SpriteRenderer spriteRenderer;
     Vector2 moveDir;
+    AttackPlayer Attackpos;
 
-
-    PlayerState state=PlayerState.Run;
+    public PlayerState state=PlayerState.Run;
     float speedJump = 9;
     float gravity =20;
     bool isGround = true;
@@ -26,7 +26,6 @@ public class Player : Character
     bool isUnBeatTime = false;
 
     Fire fire;
-
 
 
   
@@ -113,6 +112,7 @@ public class Player : Character
             Debug.Log("gun");
             anim.SetBool("gun", true);
         }
+
         if (other.gameObject.layer >= 8 && other.gameObject.layer <= 10)
         {
 
@@ -122,6 +122,7 @@ public class Player : Character
             if (state == PlayerState.Jump) { 
                 state = PlayerState.Run;
         }
+          
         }
        
 
@@ -208,24 +209,27 @@ public class Player : Character
 
   
 
-
+   
     void Attack()
     {
+
         if (Input.GetKeyDown(KeyCode.Z) && state == PlayerState.Run)
         {
             state = PlayerState.Attack;
             anim.SetTrigger("Attacking");
-            StartCoroutine("Attacks");
             moveDir.x = 0;
+            StartCoroutine(WaitForIt());
         }
     }
-    IEnumerator Attacks()
+    IEnumerator WaitForIt()
     {
-        yield return new WaitForSeconds(1f);
-        state = PlayerState.Run;
-        anim.SetTrigger("Not Attacking");
+        yield return new WaitForSeconds(0.5f);
+        if (state == PlayerState.Attack)
+        {
+            state = PlayerState.Run;
+        }
     }
-        void SetAnimation()
+    void SetAnimation()
     {
         
         anim.SetFloat("speed", Mathf.Abs(moveDir.x));
@@ -263,7 +267,7 @@ public class Player : Character
     {
         int count = 0;
       
-        while (count < 10)
+      for (count=0;count < 10; count++)
         {
             
             if (count % 2 == 0)
@@ -289,5 +293,6 @@ public class Player : Character
         fire = GetComponent<Fire>();
         speed = 3.5f;
         Hp = 100;
+        Attackpos = transform.Find("KPos").GetComponent<AttackPlayer>();
     }
 }
