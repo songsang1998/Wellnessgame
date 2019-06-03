@@ -33,7 +33,7 @@ public class Boom : Monster
     {
         playerPos = target.transform.position;
         dir = playerPos - transform.position;
-        if (dir.x >= -5 && dir.x <= 5)
+        if (dir.x >= -3 && dir.x <= 3)
         {
 
             target.SendMessage("SetDamage", Damage);
