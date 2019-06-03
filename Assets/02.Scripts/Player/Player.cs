@@ -293,6 +293,6 @@ public class Player : Character
         fire = GetComponent<Fire>();
         speed = 3.5f;
         Hp = 100;
-        Attackpos = transform.Find("KPos").GetComponent<AttackPlayer>();
+       
     }
 }
