@@ -6,19 +6,20 @@ public class Player : Character
 {
 
    public enum PlayerState {
-       Wait=0,Run,Damage,die,Attack,Jump,Sit
+       Wait=0,Run,Damage,die,Attack,Jump,Sit,Fall,SitAttack
     }
 
     Rigidbody2D rbody;
-    Animator anim;
+   public Animator anim;
     SpriteRenderer spriteRenderer;
-    Vector2 moveDir;
+   public Vector2 moveDir;
     AttackPlayer Attackpos;
-
+    Kpos Kchild;
+    Kpos SKchild;
     public PlayerState state=PlayerState.Run;
     float speedJump = 9;
     float gravity =20;
-    bool isGround = true;
+    public bool isGround = false;
     int dir = 1;
     float keys;
     public bool Pgun = false;
@@ -37,10 +38,17 @@ public class Player : Character
     }
     void Update()
     {
+       
+         
         if (state != PlayerState.die)
         {
             Gun();
-          
+            Attack();
+            SitAttack();
+            DeadCheck();
+            Down();
+            SetAnimation();
+
         }
     }
     void FixedUpdate()
@@ -49,37 +57,33 @@ public class Player : Character
         if (state != PlayerState.die)
         {
             InputKey();
-          
-            Attack();
-            SetAnimation();
+            
+            
             JumpPlayer();
 
-            DeadCheck();
-            Down();
-           
+
+
         }
     }    
 
     private void Down()
     {
-        if (state == PlayerState.Run)
-        {
-            if (Input.GetKeyDown(KeyCode.DownArrow))
+      
+            if (Input.GetKey(KeyCode.DownArrow)&& state == PlayerState.Run)
             {
-                anim.SetTrigger("sit");
+                anim.SetBool("sit",true);
                 state = PlayerState.Sit;
                 moveDir.x = 0;
             }
-        }
-        if (state == PlayerState.Sit)
-        {
-            if (Input.GetKeyUp(KeyCode.DownArrow))
+        
+        
+            if (Input.GetKey(KeyCode.DownArrow)==false&& state==PlayerState.Sit)
             {
-                anim.SetTrigger("up");
+                anim.SetBool("sit",false);
                 state = PlayerState.Run;
             }
 
-        }
+        
 
     }
     void DeadCheck()
@@ -103,43 +107,6 @@ public class Player : Character
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-      
-        if (other.transform.tag == "Gun")
-        {
-            Pgun = true;
-            Debug.Log("gun");
-            anim.SetBool("gun", true);
-        }
-
-        if (other.gameObject.layer >= 8 && other.gameObject.layer <= 10)
-        {
-
-            isGround = true;
-            moveDir.y = 0;
-            anim.SetBool("Jumping", false);
-            if (state == PlayerState.Jump) { 
-                state = PlayerState.Run;
-        }
-          
-        }
-       
-
-    }
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (state != PlayerState.die)
-        {
-
-            if (other.gameObject.layer >= 8 && other.gameObject.layer <= 10)
-            {
-                isGround = false;
-                anim.SetTrigger("Fall");
-              
-            }
-        }
-    }
 
 
 
@@ -153,7 +120,7 @@ public class Player : Character
     // Update is called once per frame
     void InputKey()
     {
-        if (state != PlayerState.Sit && state !=PlayerState.Attack)
+        if (state != PlayerState.Sit && state !=PlayerState.Attack && state != PlayerState.SitAttack)
         {
              keys = Input.GetAxis("Horizontal");
             moveDir.x = speed * keys;
@@ -165,7 +132,7 @@ public class Player : Character
     void JumpPlayer()
     {
         
-        if (isGround && Input.GetButton("Jump"))
+        if (isGround && Input.GetButton("Jump")&&state!=PlayerState.Sit && state!=PlayerState.Attack && state != PlayerState.SitAttack)
         {
             state = PlayerState.Jump;
             moveDir.y = speedJump;
@@ -197,9 +164,10 @@ public class Player : Character
             
         }
 
-        if (moveDir.y < 0)
+        if (moveDir.y < 0 && state== PlayerState.Jump)
         {
             anim.SetTrigger("Jump2");
+            state = PlayerState.Fall;
         }
         if (state == PlayerState.Damage) return;
         rbody.MovePosition(rbody.position + moveDir * Time.deltaTime);
@@ -213,20 +181,72 @@ public class Player : Character
     void Attack()
     {
 
-        if (Input.GetKeyDown(KeyCode.Z) && state == PlayerState.Run)
+        if (Input.GetKeyDown(KeyCode.Z) && state == PlayerState.Run )
         {
             state = PlayerState.Attack;
             anim.SetTrigger("Attacking");
             moveDir.x = 0;
-            StartCoroutine(WaitForIt());
+            StartCoroutine(Attackis());
+
+            
         }
     }
-    IEnumerator WaitForIt()
+
+    void SitAttack()
+    {
+
+        if (Input.GetKeyDown(KeyCode.Z) && state == PlayerState.Sit)
+        {
+            Debug.Log("sitattack");
+            state = PlayerState.SitAttack;
+            anim.SetTrigger("Attacking");
+            StartCoroutine(SAttackForIt());
+
+
+        }
+    }
+    IEnumerator Attackis()
+    {
+        yield return new WaitForSeconds(0.5f);
+        if (state == PlayerState.Attack)
+        {
+            Kchild.kp.enabled = true;
+            StartCoroutine(PWaitForIt());
+        }
+        
+       
+    }
+    IEnumerator PWaitForIt()
     {
         yield return new WaitForSeconds(0.5f);
         if (state == PlayerState.Attack)
         {
             state = PlayerState.Run;
+            if (Kchild.kp.enabled == true)
+            {
+                Kchild.kp.enabled = false;
+            }
+        }
+        else if (Kchild.kp.enabled == true)
+        {
+                Kchild.kp.enabled = false;
+            }       
+    }
+    IEnumerator SAttackForIt()
+    {
+            SKchild.kp.enabled = true;      
+        yield return new WaitForSeconds(0.5f);
+        if (state == PlayerState.SitAttack)
+        {
+            state = PlayerState.Sit;
+            if (SKchild.kp.enabled == true)
+            {
+                SKchild.kp.enabled = false;
+            }
+        }
+        else if (SKchild.kp.enabled == true)
+        {
+            SKchild.kp.enabled = false;
         }
     }
     void SetAnimation()
@@ -243,6 +263,8 @@ public class Player : Character
                 Hp -= mDamage;
                 state = PlayerState.Damage;
                 isUnBeatTime = true;
+               
+               
                 StartCoroutine("BeatTime");
                 StartCoroutine("Hit");
 
@@ -251,17 +273,16 @@ public class Player : Character
     }
     IEnumerator Hit()
     {
-        
-            anim.SetTrigger("Damage");
+        rbody.velocity = Vector2.zero;
+        anim.SetTrigger("Damage");
       Vector2 attackedVelocity;
         attackedVelocity = new Vector2(dir, 0.5f);
         rbody.AddForce(attackedVelocity, ForceMode2D.Impulse);
-        
-        
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.5f);
+        anim.SetBool("sit", false);
         state = PlayerState.Run;
 
-
+        
     }
     IEnumerator BeatTime()
     {
@@ -269,15 +290,19 @@ public class Player : Character
       
       for (count=0;count < 10; count++)
         {
-            
-            if (count % 2 == 0)
-                spriteRenderer.color = new Color32(255, 255, 255, 90);
-            else
-                spriteRenderer.color = new Color32(255, 255, 255, 180);
-            
-            yield return new WaitForSeconds(0.3f);
 
-            count++;
+            if (count % 2 == 0)
+            {
+                spriteRenderer.color = new Color32(255, 255, 255, 90);
+
+            }
+            else
+            {
+                spriteRenderer.color = new Color32(255, 255, 255,180);
+            }
+            yield return new WaitForSeconds(0.2f);
+
+           
         }
         spriteRenderer.color = new Color(255, 255, 255, 255);
         
@@ -293,6 +318,7 @@ public class Player : Character
         fire = GetComponent<Fire>();
         speed = 3.5f;
         Hp = 100;
-       
+        Kchild=GameObject.Find("KPos").GetComponent<Kpos>();
+        SKchild = GameObject.Find("SKPos").GetComponent<Kpos>();
     }
 }

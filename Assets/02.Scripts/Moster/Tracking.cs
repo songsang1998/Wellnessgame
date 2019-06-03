@@ -17,7 +17,7 @@ public class Tracking : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (Monster.target == null) return;
          playerPos = Monster.target.transform.position;
