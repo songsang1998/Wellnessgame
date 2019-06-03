@@ -42,7 +42,7 @@ public class Monster : Character
 
         public void OnCollisionStay2D (Collision2D collision)
     {
-        if (collision.transform.name == "player")
+        if (collision.transform.name == "player" && state != MonsterState.Die)
         {
             collision.gameObject.SendMessage("SetDamage", Damage);
         }
