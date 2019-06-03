@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 3666888821035995605}
   - component: {fileID: 3666888821035995604}
   - component: {fileID: 3666888821035995607}
+  - component: {fileID: 1725036611659654406}
   m_Layer: 10
   m_Name: Loming
   m_TagString: Monster
@@ -217,5 +218,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cdce9714529b73b42bebc04eb55a32ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1725036611659654406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3666888821035995606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b48a0fa63509c134d9a85e4a2adfc8f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
