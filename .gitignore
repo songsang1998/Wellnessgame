@@ -20,49 +20,55 @@ Library/
  
 # ===================================== #
  
-# Supyrb .gitignore standalone v0.1.4
-
-# Unity generated
-/Temp/**
-/Library/**
-/obj/**
-
-# Visual Studio / MonoDevelop generated
-/ExportedObj/**
-/obj
-/.vs/**
+ExportedObj/
+ 
 *.svd
+ 
 *.userprefs
+ 
 *.csproj
+ 
 *.pidb
+ 
 *.suo
+ 
 *.sln
+ 
 *.user
+ 
 *.unityproj
+ 
 *.booproj
 
-*.csproj
-*.cache
-*Resharper*
-*ReSharper*
-*.orig
-*.orig.*
-*sln*
-.idea/**
 
-# OS generated
+
+ 
+# ============ #
+ 
+# OS generated #
+ 
+# ============ #
+ 
 .DS_Store
+ 
 .DS_Store?
+ 
 ._*
+ 
 .Spotlight-V100
+ 
 .Trashes
+ 
+Icon?
+ 
 ehthumbs.db
+ 
 Thumbs.db
-report.xml
-~$*
+ 
+GraphicsSettings.asset
+ 
+ProjectSettings.asset
+ 
+ProjectVersion.txt
 
-# Custom
-/Builds/**
-/Data/**
-/Assets/Temp/**
-/Assets/Temp.meta
+
