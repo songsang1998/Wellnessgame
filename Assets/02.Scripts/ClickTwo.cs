@@ -10,21 +10,21 @@ public class ClickTwo : MonoBehaviour
     public Texture2D cursorTexture;
     private Vector2 hotSpot;
     GameObject s;
-    Texts pass1;
+    TextLoader pass2;
     private void Start()
     {
 
         hotSpot.x = cursorTexture.width / 2;
         hotSpot.y = cursorTexture.height / 2;
         s = GameObject.Find("Canvas/UI_object_research/2option");
-        pass1 = GameObject.Find("Text").GetComponent<Texts>();
+        pass2 = GetComponent<TextLoader>();
     }
 
 
     void OnMouseDown()
     {
         s.SetActive(true);
-       
+        pass2.Work2();
     }
 
 
