@@ -5,7 +5,10 @@ using UnityEngine;
 public class TextLoader : MonoBehaviour
 {
 
-    public int index;
+    public int names;
+    public int log;
+    public int yes;
+    public int no;
 
     // Start is called before the first frame update
     void Start()
@@ -20,11 +23,21 @@ public class TextLoader : MonoBehaviour
     }
 
     public void Work() {
+        Texts.instance.GetText(names,log,yes);
+    
 
-        Texts.instance.GetText(index);
-        SpecialWork(); 
     }
-    public virtual void SpecialWork() {
+    public void Work2()
+    {
+        Texts.instance.GetText2(names,log,yes,no);
+    }
+
+   
+    public virtual void SpecialWorkyes() {
+
+    }
+    public virtual void SpecialWorkno()
+    {
 
     }
 }
