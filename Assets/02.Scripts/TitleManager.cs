@@ -9,7 +9,7 @@ public class TitleManager : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("Tutorial_map");
+        SceneManager.LoadScene("investigate_map");
 
   
 
