@@ -7,6 +7,7 @@ public class Boom : Monster
     Vector3 playerPos;
     Vector2 dir;
     Animator anim;
+    AudioSource booms;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +16,7 @@ public class Boom : Monster
         speed =3;
         state = MonsterState.Wait;
         anim = GetComponent<Animator>();
-
+        booms = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -33,6 +34,7 @@ public class Boom : Monster
     {
         playerPos = target.transform.position;
         dir = playerPos - transform.position;
+        booms.Play();
         if (dir.x >= -3 && dir.x <= 3)
         {
 
