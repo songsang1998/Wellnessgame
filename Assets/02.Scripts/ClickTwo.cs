@@ -11,12 +11,14 @@ public class ClickTwo : MonoBehaviour
     private Vector2 hotSpot;
     GameObject s;
     TextLoader pass2;
+    static AudioSource r;
     private void Start()
     {
 
         hotSpot.x = cursorTexture.width / 2;
         hotSpot.y = cursorTexture.height / 2;
         s = GameObject.Find("Canvas/UI_object_research/2option");
+        r = GameObject.Find("BGM/cusor").GetComponent<AudioSource>();
         pass2 = GetComponent<TextLoader>();
     }
 
@@ -25,6 +27,7 @@ public class ClickTwo : MonoBehaviour
     {
         s.SetActive(true);
         pass2.Work2();
+        r.Play();
     }
 
 

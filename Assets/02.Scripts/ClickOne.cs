@@ -7,14 +7,16 @@ public class ClickOne : MonoBehaviour
     public int ID;
     public Texture2D cursorTexture;
     private Vector2 hotSpot;
-    GameObject s;
+    static GameObject s;
     TextLoader pass1;
+    static AudioSource r;
     private void Start()
     {
         
             hotSpot.x = cursorTexture.width / 2;
             hotSpot.y = cursorTexture.height / 2;
         s = GameObject.Find("Canvas/UI_object_research/1option");
+        r = GameObject.Find("BGM/cusor").GetComponent<AudioSource>();
         pass1 = GetComponent<TextLoader>();
     }
    
@@ -23,6 +25,7 @@ public class ClickOne : MonoBehaviour
     {
         s.SetActive(true);
         pass1.Work();
+        r.Play();
     }
   
 
