@@ -138,11 +138,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 702362682282260012}
     m_Modifications:
-    - target: {fileID: 3666888821035995606, guid: 453d31671d8ee0d46aff72ec799c0693,
-        type: 3}
-      propertyPath: m_Name
-      value: Loming
-      objectReference: {fileID: 0}
     - target: {fileID: 3666888821035995615, guid: 453d31671d8ee0d46aff72ec799c0693,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -198,6 +193,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3666888821035995606, guid: 453d31671d8ee0d46aff72ec799c0693,
+        type: 3}
+      propertyPath: m_Name
+      value: Loming
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 453d31671d8ee0d46aff72ec799c0693, type: 3}
 --- !u!4 &4277343049900944946 stripped
@@ -213,11 +213,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 702362682282260012}
     m_Modifications:
-    - target: {fileID: 3666888821035995606, guid: 453d31671d8ee0d46aff72ec799c0693,
-        type: 3}
-      propertyPath: m_Name
-      value: Loming (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 3666888821035995615, guid: 453d31671d8ee0d46aff72ec799c0693,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -273,6 +268,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3666888821035995606, guid: 453d31671d8ee0d46aff72ec799c0693,
+        type: 3}
+      propertyPath: m_Name
+      value: Loming (1)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 453d31671d8ee0d46aff72ec799c0693, type: 3}
 --- !u!4 &4277343048863163913 stripped
@@ -288,11 +288,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 702362682282260012}
     m_Modifications:
-    - target: {fileID: 877936969182798950, guid: 3b638d6590371b840a24844ab6653e2e,
-        type: 3}
-      propertyPath: m_Name
-      value: boom
-      objectReference: {fileID: 0}
     - target: {fileID: 877936969182798974, guid: 3b638d6590371b840a24844ab6653e2e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -348,6 +343,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 877936969182798950, guid: 3b638d6590371b840a24844ab6653e2e,
+        type: 3}
+      propertyPath: m_Name
+      value: boom
+      objectReference: {fileID: 0}
     - target: {fileID: 877936969182798973, guid: 3b638d6590371b840a24844ab6653e2e,
         type: 3}
       propertyPath: m_SortingOrder
@@ -374,11 +374,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 702362682282260012}
     m_Modifications:
-    - target: {fileID: 3666888821035995606, guid: 453d31671d8ee0d46aff72ec799c0693,
-        type: 3}
-      propertyPath: m_Name
-      value: Loming (2)
-      objectReference: {fileID: 0}
     - target: {fileID: 3666888821035995615, guid: 453d31671d8ee0d46aff72ec799c0693,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -434,6 +429,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3666888821035995606, guid: 453d31671d8ee0d46aff72ec799c0693,
+        type: 3}
+      propertyPath: m_Name
+      value: Loming (2)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 453d31671d8ee0d46aff72ec799c0693, type: 3}
 --- !u!4 &288796430445753731 stripped
@@ -449,11 +449,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 702362682282260012}
     m_Modifications:
-    - target: {fileID: 3666888821035995606, guid: 453d31671d8ee0d46aff72ec799c0693,
-        type: 3}
-      propertyPath: m_Name
-      value: Loming (3)
-      objectReference: {fileID: 0}
     - target: {fileID: 3666888821035995615, guid: 453d31671d8ee0d46aff72ec799c0693,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -508,6 +503,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3666888821035995606, guid: 453d31671d8ee0d46aff72ec799c0693,
+        type: 3}
+      propertyPath: m_Name
+      value: Loming (3)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 453d31671d8ee0d46aff72ec799c0693, type: 3}

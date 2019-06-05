@@ -16,6 +16,7 @@ public class Player : Character
     AttackPlayer Attackpos;
     Kpos Kchild;
     Kpos SKchild;
+    AudioSource landing;
     public PlayerState state=PlayerState.Run;
     float speedJump = 9;
     float gravity =20;
@@ -23,9 +24,9 @@ public class Player : Character
     int dir = 1;
     float keys;
     public bool Pgun = false;
-
+    AudioSource sword;
     bool isUnBeatTime = false;
-
+    bool landgs = false;
     Fire fire;
 
 
@@ -48,6 +49,7 @@ public class Player : Character
             DeadCheck();
             Down();
             SetAnimation();
+            RunBgm();
 
         }
     }
@@ -94,7 +96,23 @@ public class Player : Character
             isGround = false;
         }
     }
-    
+    void RunBgm()
+    {
+
+        if ((Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow))&&landgs==false&&state==PlayerState.Run)
+        {
+           
+            landgs = true;
+            Invoke("SRunBgm", 0.3f);
+        }
+
+    }
+
+    void SRunBgm()
+    {
+        landgs = false;
+        landing.Play();
+    }
   
     void Gun()
     {
@@ -125,6 +143,8 @@ public class Player : Character
              keys = Input.GetAxis("Horizontal");
             moveDir.x = speed * keys;
             FlipPlayer(keys);
+           
+           
         }
         
     }
@@ -184,10 +204,11 @@ public class Player : Character
         if (Input.GetKeyDown(KeyCode.Z) && state == PlayerState.Run )
         {
             state = PlayerState.Attack;
+            sword.Play();
             anim.SetTrigger("Attacking");
             moveDir.x = 0;
             StartCoroutine(Attackis());
-
+           
             
         }
     }
@@ -198,6 +219,7 @@ public class Player : Character
         if (Input.GetKeyDown(KeyCode.Z) && state == PlayerState.Sit)
         {
             Debug.Log("sitattack");
+            sword.Play();
             state = PlayerState.SitAttack;
             anim.SetTrigger("Attacking");
             StartCoroutine(SAttackForIt());
@@ -318,7 +340,9 @@ public class Player : Character
         fire = GetComponent<Fire>();
         speed = 3.5f;
         Hp = 100;
-        Kchild=GameObject.Find("KPos").GetComponent<Kpos>();
+        landing = GameObject.Find("Bpos").GetComponent<AudioSource>();
+        Kchild =GameObject.Find("KPos").GetComponent<Kpos>();
         SKchild = GameObject.Find("SKPos").GetComponent<Kpos>();
+        sword = GetComponent<AudioSource>();
     }
 }

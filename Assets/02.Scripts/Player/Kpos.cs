@@ -5,10 +5,12 @@ using UnityEngine;
 public class Kpos : MonoBehaviour
 {
     public Collider2D kp;
-   
+    AudioSource hits;
+
     private void Start()
     {
         kp = GetComponent<Collider2D>();
+        hits = GetComponent<AudioSource>();
         kp.enabled = false;
     }
     // Start is called before the first frame update
@@ -19,7 +21,7 @@ public class Kpos : MonoBehaviour
         if (other.transform.tag == "Monster")
         {
             Debug.Log("Mosterhit");
-          
+            hits.Play();
             other.gameObject.SendMessage("MobDamage",10);
             kp.enabled = false;
         }

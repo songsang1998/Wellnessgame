@@ -6,24 +6,21 @@ using UnityEngine.SceneManagement;
 
 public class Door1 : MonoBehaviour
 {
+    AudioSource Doors;
+  
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.transform.tag == "Player")
         {
+            Doors = GetComponent<AudioSource>();
+            Doors.Play();
             SceneManager.LoadScene("bosoru_tutorial");
-
+           
 
         }
 
     }
     
 
-    public void QuitGame()
-    {
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-        Application.Quit();
-#endif
-    }
+  
 }
