@@ -9,13 +9,15 @@ public class sliderTest : MonoBehaviour
     //Use this for initialization
     private void Start()
     {
-       progress = GetComponent<Slider>();
-        obj = GameObject.FindWithTag("Player").GetComponent<Player>();
+
+        
     }
 
     // Update is called once per frame
     private void Update()
     {
+        progress = GetComponent<Slider>();
+        obj = GameObject.FindWithTag("Player").GetComponent<Player>();
         hps = obj.Hp;
         progress.value = hps;
     }
