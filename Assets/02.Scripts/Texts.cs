@@ -18,6 +18,7 @@ public class Texts : MonoBehaviour
     int syes = 0;
     int sno = 0;
     int names = 0;
+    int slog = 0; 
     public static Texts instance;
     private void Awake()
     {
@@ -46,6 +47,7 @@ public class Texts : MonoBehaviour
         yes1.text = excelExample.dataArray[yes].Name;
         syes = yes;
         names=index;
+        slog = log;
     }
     public void GetText2(int index, int log, int yes, int no)
     {
@@ -56,6 +58,7 @@ public class Texts : MonoBehaviour
         syes = yes;
         sno = no;
         names = index;
+        slog = log;
     }
 
     public void Close()
@@ -68,9 +71,9 @@ public class Texts : MonoBehaviour
         {
             GetText(29, 30, 3);
         }
-        else if (names == 33)
+        else if (slog == 36)
         {
-            GetText(18, 37, 3);
+            GetText(39, 37, 3);
             
         }
         else
@@ -111,7 +114,7 @@ public class Texts : MonoBehaviour
         if (names == 33)
         {
             GameObject.Find("Canvas/UI_object_research/1option").SetActive(true);
-            GetText(33, 36, 18);
+            GetText(33, 36, 40);
         }
         if (syes == 6)
         {
